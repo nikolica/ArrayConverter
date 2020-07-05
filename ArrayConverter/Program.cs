@@ -80,17 +80,17 @@
 
     public struct CustomArray
     {
-        private int Height;
-        private int Width;
-        private int Size;
-        public int[] Array;
+        private readonly int Height;
+        private readonly int Width;
+        private readonly int Size;
+        public int[] OneDimensionalArray;
         public int[,] TwoDimensionalArray;
         public CustomArray(int height, int width)
         {
             Height = height;
             Width = width;
             Size = height * width;
-            Array = new int[Size];
+            OneDimensionalArray = new int[Size];
             TwoDimensionalArray = new int[height, width]; ;
         }
         public int[] ConvertTo1dArray()
@@ -100,10 +100,10 @@
             {
                 for (var z = 0; z <= TwoDimensionalArray.GetUpperBound(1); z++)
                 {
-                    Array[write++] = TwoDimensionalArray[i, z];
+                    OneDimensionalArray[write++] = TwoDimensionalArray[i, z];
                 }
             }
-            return Array;
+            return OneDimensionalArray;
         }
         public void Read2dValues()
         {
@@ -118,12 +118,12 @@
         }
         public int Access1dAs2d(int x, int y)
         {
-            return Array[(x * Width) + y];
+            return OneDimensionalArray[(x * Width) + y];
         }
         public void Write1dValues()
         {
             Console.WriteLine("\n1d Array:");
-            foreach (var value in Array)
+            foreach (var value in OneDimensionalArray)
             {
                 Console.Write($"{value}\t");
             }
